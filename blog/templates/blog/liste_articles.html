@@ -1,0 +1,15 @@
+<!-- blog/templates/blog/liste_articles.html -->
+{% extends "base.html" %}
+
+{% block contenu %}
+  <h1>Articles</h1>
+  {% for article in articles %}
+    <article>
+      <h2>{{ article.titre }}</h2>
+      <p>Par {{ article.auteur.username }} - {{ article.date_creation|date:"d/m/Y" }}</p>
+      <a href="{% url 'detail_article' article.slug %}">Lire la suite</a>
+    </article>
+  {% empty %}
+    <p>Aucun article publié pour le moment.</p>
+  {% endfor %}
+{% endblock %}
