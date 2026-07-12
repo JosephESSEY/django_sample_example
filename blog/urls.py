@@ -1,8 +1,10 @@
-from django.urls import path
-from . import views
+# blog/urls.py
+from rest_framework.routers import DefaultRouter
+from .views import CategorieViewSet, ArticleViewSet, CommentaireViewSet
 
-urlpatterns = [
-    path("", views.liste_articles, name="liste_articles"),
-    path("articles/<slug:slug>/", views.detail_article, name="detail_article"),
-    path("api/articles/", views.api_articles, name="api_articles"),
-]
+router = DefaultRouter()
+router.register("categories", CategorieViewSet)
+router.register("articles", ArticleViewSet)
+router.register("commentaires", CommentaireViewSet)
+
+urlpatterns = router.urls
